@@ -1,0 +1,40 @@
+{% extends 'footer_header.html' %}
+
+{% block menu_text %}
+効果測定_画像認識
+{% endblock %}
+
+{% block back_to_menu_text %}
+メニューへ戻る
+{% endblock %}
+
+{% block body %}
+<style type="text/css">
+    .filepath {
+        margin: 0 auto;
+        display: block;
+    }
+    .wrapper{
+        text-align: center;
+    }
+    .answer{
+        color: crimson;
+    }
+    </style>
+<body>
+    <div class="wrapper">
+        <h2> AIが送信された画像を判定します。</h2>
+        <p>画像を送信してください</p>
+        <form method="POST" action = "{{action}}" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".jpg, .jpeg, .png, .gif">
+            <input type="submit" value="送信">
+        </form>
+        <div class="answer">{{answer}}</div>
+        <div class="up_img">
+            {% if filepath %}
+                <img class="filepath" src={{ filepath }} height="333">
+            {% endif %}
+        </div>
+    </div>
+</body>
+{% endblock %}

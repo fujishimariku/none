@@ -1,0 +1,134 @@
+{% extends 'footer_header.html' %}
+
+{% block menu_text %}
+効果測定_翻訳
+{% endblock %}
+
+{% block back_to_menu_text %}
+メニューへ戻る
+{% endblock %}
+
+{% block body %}
+<style type="text/css">
+  .flex_test-box {
+  justify-content: center;
+  padding:  10px;
+  display: flex;
+  }
+  .flex_test-item {
+  padding: 10px;
+  margin:  10px;
+  }
+  .translate{
+  text-align: right;
+  }
+  .file{
+  text-align: left;
+  margin-top:-1.6rem;
+  }
+  .audio{
+  margin-top:0.5rem;
+  }
+  .read{
+  margin-top:0.5rem;
+}
+.text{
+  margin-bottom: -1rem;
+  margin-top: 1.5rem;
+}
+.input::placeholder{
+  color: red;
+}
+.string_count{
+  text-align: right;
+  margin-top: -1.5rem;
+}
+#innerHTMLtxt{
+  margin-left: 10rem;
+  margin-top: -0.5rem;
+  color: red;
+}
+.class{
+  display: flex;
+}
+#innerHTMLtxt2{
+  text-align: right;
+  margin-top: -2.85rem;
+  color: red;
+}
+</style>
+<body>
+  <p class="text">入力された言語は自動判定で適切に翻訳します。　音声合成も言語に合わせて適切に読み上げます。</p>
+    <form method="post" action="/trans/" enctype="multipart/form-data">
+      <div class="flex_test-box">
+        <div class="flex_test-item">
+          <textarea class = "input" name="input_text" rows="25" cols="84" maxlength="5000" placeholder="こちらに翻訳させたい文章を入力してください。">{{input_text}}</textarea>
+            <div class = "translate">
+              <select name="lang">
+                {% for lang in lang %}
+                  {% if lang.selected %}
+                  <option value="{{ loop.index0 }}" selected> {{ lang.display }}</option>
+                  {% else %}
+                  <option value="{{ loop.index0 }}"> {{ lang.display }}</option>
+                  {% endif %}
+                {% endfor %}
+              </select>
+              <input type="submit" name = "send" value="翻訳する">
+            </div>
+            <div class="file">
+              <input type="file" name="file" accept=".txt">
+              <br>
+              <input type="submit" name = "send" value="ファイルを読み込む"class="read">
+              <p class="string_count">{{input_lengh}}</p>
+            <div id="innerHTMLtxt"></div>
+            </div>
+        </div>
+        <div class="flex_test-item">
+          <textarea name="output_text" rows="25" cols="84" placeholder="翻訳結果がこちらに表示されます。" readonly>{{output_text}}</textarea>
+          <input type="submit" name="send" value="音声合成">
+          <input type="submit" name = "send" value="感情分析">
+          {{sentiment}}
+          <br>
+          <audio src="{{polly}}" controls preload="metadata" class="audio"></audio>
+          <div id="innerHTMLtxt2"></div>
+        </div>
+      </div>
+    </form>
+<script>
+const textarea = document.querySelector('.input');
+const string_count = document.querySelector('.string_count');
+textarea.addEventListener('keyup', onKeyUp);
+function message() {
+  const inputText = textarea.value;
+  if (inputText.length >= 5000) {
+    string_count.style.color = "blue";
+    innerHTMLtxt.innerHTML = "＊日本語でおよそ1600字以上はエラーとなります＊<br>　＊＊＊＊＊文字数上限に達しました＊＊＊＊＊";
+  }else if(inputText.length >= 1600){
+    innerHTMLtxt.innerHTML = "＊日本語でおよそ1600字以上はエラーとなります＊";
+  }else if(inputText.length < 5000){
+    innerHTMLtxt.innerHTML = "";
+  }if (inputText.length >= 800){
+    innerHTMLtxt2.innerHTML = "＊文字過多 音声合成できない可能性＊";
+  }else if(inputText.length < 730){
+    innerHTMLtxt2.innerHTML = "";
+  }
+}
+function onKeyUp() {
+  var inputText = textarea.value;
+  document.addEventListener('keydown', (e)=>{
+    if (e.key == "(" || e.key == ")" || e.key == "/" || e.key == "<" || e.key == ">")
+    alert("特殊文字を使うと音声合成でエラーになる可能性があります。")
+    });
+    message()
+    if(inputText.length < 5000){
+      string_count.style.color = "black";
+    }
+
+  string_count.innerText = inputText.length+"/5000";
+  }
+  message()
+</script>
+{% endblock %}
+
+
+

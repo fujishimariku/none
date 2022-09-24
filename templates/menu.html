@@ -1,0 +1,180 @@
+{% extends 'footer_header.html' %}
+
+{% block menu_text %}
+  効果測定
+{% endblock %}
+
+{% block back_to_menu_text %}
+  メニュー画面です
+{% endblock %}
+
+{% block body %}
+<style type="text/css">
+.container2 {
+  margin-top: -0.1rem;
+  text-align: center;
+  width: 38.3333333333%;
+}
+.left {
+  margin-left: auto !important;
+}
+.right {
+  margin-right: auto !important;
+}
+.container {
+  --bs-gutter-x: 1rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(var(--bs-gutter-y) * -1);
+  margin-right: calc(var(--bs-gutter-x) / -2);
+  margin-left: calc(var(--bs-gutter-x) / -2);
+}
+h1 {
+  position: relative;
+  color: #333;
+  display: inline-block;
+  margin: 47px 0;
+  text-shadow: 0 0 2px white;
+}
+h1:before {
+  content: '';
+  position: absolute;
+  background: #a9e1ff;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  top: 50%;
+  border: dashed 1px white;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  box-shadow: 0px 0px 0px 5px #a9e1ff;
+}
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+.btn,
+a.btn,
+button.btn {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+}
+a.btn-border-shadow {
+  padding: calc(1.5rem - 12px) 3rem 1.5rem;
+  background: #fff;
+}
+a.btn-border-shadow:before {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  width: 100%;
+  height: 100%;
+  content: '';
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  border: 3px solid #000;
+  border-radius: 0.5rem;
+}
+a.btn-border-shadow:hover {
+  padding: calc(1.5rem - 6px) 3rem;
+}
+a.btn-border-shadow:hover:before {
+  top: 0;
+  left: 0;
+}
+a.btn-border-shadow--color2 {
+  border-radius: 100vh;
+}
+a.btn-border-shadow--color2:before {
+  border-radius: 100vh;
+  -webkit-box-shadow: 3px 3px 0 #78e5e5;
+  box-shadow: 3px 3px 0 #78e5e5;
+}
+@keyframes slidy {
+  0% {
+    left: 0%;
+  }
+  20% {
+    left: 0%;
+  }
+  25% {
+    left: -100%;
+  }
+  45% {
+    left: -100%;
+  }
+  50% {
+    left: -200%;
+  }
+  70% {
+    left: -200%;
+  }
+}
+div#slider {
+  overflow: hidden;
+}
+div#slider figure img {
+  width: 20%;
+  height: 245px;
+  float: left;
+}
+div#slider figure {
+  position: relative;
+  width: 500%;
+  margin: 0;
+  left: 0;
+  text-align: left;
+  font-size: 0;
+  animation: 25s slidy infinite;
+}
+</style>
+<div class="container">
+  <div class="container2 left">
+    <h1>翻訳</h1>
+    <br />
+    AWSTranslateサービスを利用した翻訳サービスを呼び出します。<div id="slider">
+      <figure>
+        <img src="../static/image/must_image/transrate.png" alt="" />
+        <img src="../static/image/must_image/transrate1.gif" alt="" />
+        <img src="../static/image/must_image/transrate2.gif" alt="" />
+      </figure>
+    </div>
+    <br />
+    <a class="btn btn-border-shadow btn-border-shadow--color2" href="/trans/" role="button">翻訳へ</a>
+  </div>&nbsp; &nbsp; &nbsp; &nbsp;<div class="container2 right">
+    <h1>画像認識</h1>
+    <br />
+    作成済みのモデルを用いて入力された画像を分類します。<div id="slider">
+      <figure>
+        <img src="../static/image/must_image/image.png" alt="" />
+        <img src="../static/image/must_image/image1.gif" alt="" />
+        <img src="../static/image/must_image/image2.gif" alt="" />
+      </figure>
+    </div>
+    <br />
+    <a class="btn btn-border-shadow btn-border-shadow--color2" href="/image_menu/" role="button">画像認識</a>
+  </div>
+</div>
+{% endblock %}

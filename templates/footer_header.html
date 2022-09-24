@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <style type="text/css">
+      header {
+        z-index: -1;
+        background-color: #76b55b;
+        height: 60px;
+        margin: -8px;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+      }
+      .header-title {
+        color: #f7f7f7;
+        font-size: 25px;
+        margin: 15px 25px;
+        position: absolute;
+        left: 0;
+      }
+      footer {
+        z-index: -1;
+        background-color: #f7f7f7;
+        height: 40px;
+        width: 99%;
+        position: absolute;
+        bottom: 0;
+      }
+      .last-text {
+        margin: 15px auto;
+        display: block;
+        width: fit-content;
+      }
+      .header-back {
+        z-index: 1000;
+        color: #f7f7f7;
+        font-size: 25px;
+        margin: 15px 25px;
+        position: right;
+        left: 0;
+      }
+      @import url('https://fonts.googleapis.com/css?family=Merienda');
+      .background {
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        z-index: -1;
+      }
+      body {
+        background: #fff;
+      }
+      .container_ {
+        height: 80vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container_">
+      <header>
+        <p class="header-title">{% block menu_text %}{% endblock %}</p>
+
+        <a class="header-back" href="/" role="button">{% block back_to_menu_text %}{% endblock %}</a>
+      </header>
+      {% block body %}
+      {% endblock %}
+      <footer>
+        <small class="last-text">©2022 fujishimariku</small>
+      </footer>
+    </div>
+    <canvas class="background"></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.2/particles.min.js"></script>
+    <script>
+      window.onload = function () {
+        Particles.init({
+          selector: '.background',
+          sizeVariations: 5,
+          speed: 0.35,
+          maxParticles: 100,
+          color: ['#fff','#00FFFF','#90EE90']
+        })
+      }
+    </script>
+  </body>
+</html>

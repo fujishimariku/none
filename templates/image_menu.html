@@ -1,0 +1,62 @@
+{% extends 'footer_header.html' %}
+
+{% block menu_text %}
+  効果測定_画像認識
+{% endblock %}
+
+{% block back_to_menu_text %}
+  メニューへ戻る
+{% endblock %}
+
+{% block body %}
+  <style type="text/css">
+    .button {
+      display: inline-block;
+      border-radius: 50%;
+      box-shadow: 6px 6px 3px #666666;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .button:hover {
+      box-shadow: none;
+      border-radius: 0;
+    }
+    .container2 {
+      text-align: center;
+      width: 38.3333333333%;
+    }
+    .left {
+      margin-left: auto !important;
+    }
+    .right {
+      margin-right: auto !important;
+    }
+    .container {
+      --bs-gutter-x: 1rem;
+      --bs-gutter-y: 0;
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: calc(var(--bs-gutter-y) * -1);
+      margin-right: calc(var(--bs-gutter-x) / -2);
+      margin-left: calc(var(--bs-gutter-x) / -2);
+    }
+  </style>
+
+  <form method="post" enctype="multipart/form-data">
+    <br/><br/><br/>
+    <div class="container">
+      <div class="container2 left">
+        <a href="/kotougeeiji/"><img class="button" width="300" src="../static/image/must_image/menu_kotouge.jpg"
+          onmouseover="this.src='../static/image/must_image/menu_kotouge2.jpg'"
+          onmouseout="this.src='../static/image/must_image/menu_kotouge.jpg'" alt="小峠英二判定" /></a>
+        <p>入力された人物が小峠英二かどうか判定します。</p>
+      </div>
+      <div class="container2 right">
+        <a href="/dog_cat/"><img class="button" width="300" src="../static/image/must_image/menu_dog.jpg"
+          onmouseover="this.src='../static/image/must_image/menu_cat.jpg'"
+          onmouseout="this.src='../static/image/must_image/menu_dog.jpg'" alt="犬猫判定" /></a>
+        <p>入力された画像が犬か猫かを判定します。</p>
+      </div>
+    </div>
+  </form>
+{% endblock %}
